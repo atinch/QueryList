@@ -1,4 +1,4 @@
-atinc-query-list.netlify.com
+
 
 # QueryList UI (using React and Redux)
 
