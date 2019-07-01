@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddQuery should be Form 1`] = `
+<div>
+  <Form
+    as="form"
+    className="form-wrapper"
+    onSubmit={[Function]}
+  >
+    <FormGroup
+      widths="equal"
+    >
+      <FormField
+        control={[Function]}
+        error={false}
+        label="First name"
+        name="firstName"
+        onChange={[Function]}
+        placeholder="First name"
+        value=""
+      />
+      <FormField
+        control={[Function]}
+        error={false}
+        label="Surname"
+        name="surname"
+        onChange={[Function]}
+        placeholder="Surname"
+        value=""
+      />
+      <FormField
+        control={[Function]}
+        error={false}
+        label="Email"
+        name="email"
+        onChange={[Function]}
+        placeholder="Email"
+        value=""
+      />
+    </FormGroup>
+    <FormField
+      control={[Function]}
+      label="Query"
+      name="query"
+      onChange={[Function]}
+      placeholder="Query"
+      value=""
+    />
+    <div
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <FormButton
+        as={[Function]}
+        control={[Function]}
+        type="submit"
+      >
+        Add
+      </FormButton>
+    </div>
+  </Form>
+</div>
+`;
+
+exports[`AddQuery should render a Form 1`] = `
+<div>
+  <Form
+    as="form"
+    className="form-wrapper"
+    onSubmit={[Function]}
+  >
+    <FormGroup
+      widths="equal"
+    >
+      <FormField
+        control={[Function]}
+        error={false}
+        label="First name"
+        name="firstName"
+        onChange={[Function]}
+        placeholder="First name"
+        value=""
+      />
+      <FormField
+        control={[Function]}
+        error={false}
+        label="Surname"
+        name="surname"
+        onChange={[Function]}
+        placeholder="Surname"
+        value=""
+      />
+      <FormField
+        control={[Function]}
+        error={false}
+        label="Email"
+        name="email"
+        onChange={[Function]}
+        placeholder="Email"
+        value=""
+      />
+    </FormGroup>
+    <FormField
+      control={[Function]}
+      label="Query"
+      name="query"
+      onChange={[Function]}
+      placeholder="Query"
+      value=""
+    />
+    <div
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <FormButton
+        as={[Function]}
+        control={[Function]}
+        type="submit"
+      >
+        Add
+      </FormButton>
+    </div>
+  </Form>
+</div>
+`;

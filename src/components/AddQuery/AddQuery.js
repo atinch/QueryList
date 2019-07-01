@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import uuid from 'uuid/v4';
 import { connect } from 'react-redux';
 import { addQueryAction } from '../../redux';
@@ -7,115 +7,122 @@ import { Redirect } from 'react-router-dom';
 
 import './AddQuery.css';
 
-const AddQuery = (props) => {
+  export class AddQuery extends React.Component {
 
-  const { complete } = props;
+  state = {
+    firstName:'',
+    surname: '',
+    email: '',
+    query: '',
+    firstNameError: false,
+    surnameError: false,
+    emailError: false,
+    redirect: false
+  }
 
-  const [firstName, setFirstName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [email, setEmail] = useState('');
-  const [query, setQuery] = useState('');
-  const [firstNameError, setFirstNameError] = useState(false);
-  const [surnameError, setSurnameError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [redirect, setRedirect] = useState(false);
-
-  const onSubmit = (event) => {
-
-    if(!isFormCorrect()) return false;
-    setRedirect(true);
-    console.log('complete1',complete);
-    event.preventDefault();
-    props.addQueryAction({
-      id: uuid(),
-      name: firstName,
-      surname: surname,
-      email: email,
-      query: query,
-      redirect: false
-    });
-
-    setFirstName('');
-    setSurname('');
-    setEmail('');
-    setQuery('');
-  };
-
-  function isFormCorrect() {
+  ValidationControl = () => {
 
     let isFormCorrect = true
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if(!firstName.trim()) {
-      setFirstNameError(true);
+  
+    if(!this.state.firstName.trim()) {
+      this.setState({firstNameError: true})
       isFormCorrect = false;
     }else { 
-      setFirstNameError(false)
+      this.setState({firstNameError: false})
     }
-
-    if(!surname.trim()) {
-      setSurnameError(true);
+  
+    if(!this.state.surname.trim()) {
+      this.setState({surnameError: true})
       isFormCorrect = false;
     }else { 
-      setSurnameError(false)
+      this.setState({surnameError: false})
     }
-
-    if(email.trim() && re.test(email)) {
-      setEmailError(false);
+  
+    if(this.state.email.trim() && re.test(this.state.email)) {
+      this.setState({emailError: false})
     }else { 
-      setEmailError(true);
+      this.setState({emailError: true})
       isFormCorrect = false;
     }
-
+  
     return isFormCorrect
   }
 
-  const form =   (<Form onSubmit={onSubmit} className='form-wrapper'>
-  <Form.Group widths='equal' >
-      <Form.Field control={Input}
-        label='First name' 
-        name="firstName"
-        placeholder='First name' 
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        error={firstNameError}
-      />
-       <Form.Field control={Input}
-        label="Surname"
-        name="surname"
-        placeholder="Surname"
-        value={surname}
-        onChange={(e) => setSurname(e.target.value)}
-        error={surnameError}
-      />
-      <Form.Field control={Input}
-        label="Email"
-        name="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        error={emailError}
-      />
-      </Form.Group>
-      <Form.Field control={TextArea}
-        label="Query"
-        name="query"
-        placeholder="Query"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
-      <div style={{textAlign: 'center'}}>
-        <Form.Button type="submit">Add</Form.Button>
-      </div>
-  </Form>)
+   onSubmit = (event) => {
 
-  return (
-    <div>
-      { complete && redirect ? <Redirect to='/'/> : form }
-    </div>
-    
+    if(!this.ValidationControl()) return false;
    
-  );
+    this.setState({ redirect : true})
+    event.preventDefault();
+    this.props.addQueryAction({
+      id: uuid(),
+      firstName: this.state.firstName,
+      surname: this.state.surname,
+      email: this.state.email,
+      query: this.state.query,
+      redirect: false
+    });
+
+    this.setState({ 
+      firstName: '',
+      surname:'',
+      email: '',
+      query: ''
+    })
+  };
+
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+};
+
+  render() { 
+  console.log()
+    const form =   (<Form onSubmit={this.onSubmit} className='form-wrapper'>
+    <Form.Group widths='equal' >
+        <Form.Field control={Input}
+          label='First name' 
+          name="firstName"
+          placeholder='First name' 
+          value={this.state.firstName}
+          onChange={(e) => this.setState({ firstName: e.target.value}) }
+          error={this.state.firstNameError}
+        />
+        <Form.Field control={Input}
+          label="Surname"
+          name="surname"
+          placeholder="Surname"
+          value={this.state.surname}
+          onChange={(e) =>  this.setState({ surname: e.target.value})}
+          error={this.state.surnameError}
+        />
+        <Form.Field control={Input}
+          label="Email"
+          name="email"
+          placeholder="Email"
+          value={this.state.email}
+          onChange={(e) =>  this.setState({ email: e.target.value})}
+          error={this.state.emailError}
+        />
+        </Form.Group>
+        <Form.Field control={TextArea}
+          label="Query"
+          name="query"
+          placeholder="Query"
+          value={this.state.query}
+          onChange={(e) =>  this.setState({ query: e.target.value})}
+        />
+        <div style={{textAlign: 'center'}}>
+          <Form.Button type="submit">Add</Form.Button>
+        </div>
+    </Form>)
+
+    return (
+      <div>
+        { this.props.complete && this.state.redirect ? <Redirect to='/'/> : form }
+      </div>   
+    );
+  }
 };
 
 const mapStateToProps = (state) => ({

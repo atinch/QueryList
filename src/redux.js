@@ -6,7 +6,7 @@ const initialState = {
   queries: [
     {
       id: uuid(),
-      name: 'Atinc',
+      firstName: 'Atinc',
       surname: 'Erguven',
       email: 'Atinc@gmail.com',
       query: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, 

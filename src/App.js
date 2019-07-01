@@ -8,7 +8,7 @@ import AddQuery from './components/AddQuery/AddQuery';
 import QueryList from './components/QueryList/QueryList';
 
 const App = () => (
-  <Provider store={store}>
+  <Provider store={store}> 
     <div className="main">
     <header className="App-header">
     <h1>Query List App</h1>

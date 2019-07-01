@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QueryList should assign correct header 1`] = `
+<div>
+  <Link
+    align="left"
+    to="/queries/new"
+  >
+    <Button
+      as="button"
+    >
+      New Query
+    </Button>
+  </Link>
+  <Table
+    as="table"
+  >
+    <TableHeader
+      as="thead"
+    >
+      <TableRow
+        as="tr"
+        cellAs="td"
+      >
+        <TableHeaderCell
+          as="th"
+          width="2"
+        >
+          Name
+        </TableHeaderCell>
+        <TableHeaderCell
+          as="th"
+        >
+          Query
+        </TableHeaderCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody
+      as="tbody"
+    >
+      <TableRow
+        as="tr"
+        cellAs="td"
+        key="122432"
+      >
+        <TableCell
+          as="td"
+        >
+          Atinc
+           
+          Erguven
+        </TableCell>
+        <TableCell
+          as="td"
+        >
+          Lorem
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</div>
+`;
